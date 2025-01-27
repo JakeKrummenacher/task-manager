@@ -11,6 +11,7 @@ const io = new Server(server, {
     origin: "*",
     methods: ["GET", "POST"],
   },
+  allowEIO3: true
 });
 
 let tasks = [];
