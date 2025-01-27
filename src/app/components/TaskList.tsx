@@ -1,13 +1,13 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { Task } from "../types";
 
 const socket = io(process.env.NEXT_PUBLIC_WS_URL || "http://localhost:3001", {
-  transports: ["websocket"]
+  transports: ["websocket"],
 });
 
-console.log("WebSocket URL:", process.env.NEXT_PUBLIC_WS_URL)
+console.log("WebSocket URL:", process.env.NEXT_PUBLIC_WS_URL);
 
 const TaskList = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -37,9 +37,9 @@ const TaskList = () => {
 
   const handleTaskCompletion = (task: Task) => {
     if (task.completed) {
-        socket.emit('uncompleteTask', task.id)
+      socket.emit("uncompleteTask", task.id);
     } else {
-        socket.emit('completeTask', task.id)
+      socket.emit("completeTask", task.id);
     }
   };
 
@@ -77,9 +77,15 @@ const TaskList = () => {
             </span>
             <button
               onClick={() => handleTaskCompletion(task)}
-              className="ml-2 p-1 bg-green-500 text-white rounded"
+              className={`ml-2 p-1 text-white rounded ${
+                task.completed ? "bg-blue-500" : "bg-green-500"
+              }`}
             >
-                {task.completed ? <span>Mark as Incomplete</span> : <span>Complete</span>}
+              {task.completed ? (
+                <span>Mark as Incomplete</span>
+              ) : (
+                <span>Complete</span>
+              )}
             </button>
             <button
               onClick={() => deleteTask(task.id)}
