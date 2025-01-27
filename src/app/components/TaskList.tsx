@@ -7,6 +7,8 @@ const socket = io(process.env.NEXT_PUBLIC_WS_URL || "http://localhost:3001", {
   transports: ["websocket"]
 });
 
+console.log("WebSocket URL:", process.env.NEXT_PUBLIC_WS_URL)
+
 const TaskList = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskName, setNewTaskName] = useState<string>("");
