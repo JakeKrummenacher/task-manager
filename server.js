@@ -3,6 +3,7 @@ import express from 'express'
 import http from 'http'
 
 const app = express()
+app.set('trust proxy', 1)
 const server = http.createServer(app)
 const port = process.env.WS_PORT || 3001;
 
