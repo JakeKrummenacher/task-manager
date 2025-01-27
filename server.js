@@ -1,8 +1,12 @@
 import { Server } from "socket.io";
+import express from 'express'
+import http from 'http'
 
+const app = express()
+const server = http.createServer(app)
 const port = process.env.PORT || 3001;
 
-const io = new Server(port, {
+const io = new Server(server, {
   cors: {
     origin: "*",
     methods: ["GET", "POST"],
@@ -11,7 +15,6 @@ const io = new Server(port, {
 
 let tasks = [];
 
-// Helper function to sort tasks: incomplete tasks first, completed tasks after
 const sortTasks = (tasks) => {
   return tasks.sort((a, b) => (a.completed === b.completed ? 0 : a.completed ? 1 : -1));
 };
@@ -50,4 +53,6 @@ io.on("connection", (socket) => {
   });
 });
 
-console.log(`WebSocket server is running on port ${port}`);
+server.listen(port, () => {
+  console.log(`WebSocket Server is running on port ${port}`)
+})

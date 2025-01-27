@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { Task } from "../types";
 
-const socket = io(process.env.NEXT_PUBLIC_WS_URL || "http://localhost:3001");
+const socket = io(process.env.NEXT_PUBLIC_WS_URL || "http://localhost:3001", {
+  transports: ["websocket"]
+});
 
 const TaskList = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
