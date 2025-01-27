@@ -4,7 +4,7 @@ import http from 'http'
 
 const app = express()
 const server = http.createServer(app)
-const port = process.env.PORT || 3001;
+const port = process.env.WS_PORT || 3001;
 
 const io = new Server(server, {
   cors: {
