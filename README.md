@@ -1,6 +1,28 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+This app currently runs on [this Vercel Deployment](https://jake-task-manager.vercel.app/)
+
+### Note: The WebSocket Server runs on Heroku and may need a minute or so to start up. 
+## My approach to this application
+
+First, I went ahead with the creation of the Next.js app. While this is not explicitly react only, create-react-app was not appealing to me due to it being currently deprecated. I am able to adapt to any framework built on React as needed (or take on any new front end framework as needed).
+
+#### I had a few things in mind when creating the WebSocket server:
+
+1. Adding tasks
+2. Removing Tasks
+3. Completing tasks
+4. Marking tasks as incomplete (though this was not a requirement, upon doing some quality assurance, I felt that a sort of "undo" action was desired)
+5. Sorting tasks by completion (this was also not a requirement, but I think intuitively, a user of such an application would want their outstanding tasks to show up first.)
+6. Sufficient logging to understand issues as they arise
+
+#### The front end is pretty straight forward, but I had a couple things in mind when creating it:
+1. Use TailwindCSS as it is a popular CSS solution right now. I am flexible with any type of CSS as needed
+2. Make sure that everything functions as a user would expect it to. For example, when a task is already completed, a line is drawn through the text, and the button text changes to "Mark as Incomplete".
+3. Use Prettier to make the app more uniform all around
+4. Use TypeScript for good practice
+
+## Running the App Locally:
 
 First, run the development server:
 
@@ -14,23 +36,9 @@ pnpm dev
 bun dev
 ```
 
+Then, start the WebSocket Server in a seperate terminal instance: 
+```bash
+node server.js
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
