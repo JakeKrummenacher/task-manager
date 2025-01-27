@@ -54,5 +54,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(port, () => {
-  console.log(`WebSocket Server is running at ${server.address}`)
+  console.log(`WebSocket Server is running on port ${port}`)
 })
