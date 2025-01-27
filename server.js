@@ -1,10 +1,10 @@
 import { Server } from "socket.io";
-import express from 'express'
-import http from 'http'
+import express from "express";
+import http from "http";
 
-const app = express()
-app.set('trust proxy', 1)
-const server = http.createServer(app)
+const app = express();
+app.set("trust proxy", 1);
+const server = http.createServer(app);
 const port = process.env.PORT || 3001;
 
 const io = new Server(server, {
@@ -12,13 +12,15 @@ const io = new Server(server, {
     origin: "*",
     methods: ["GET", "POST"],
   },
-  allowEIO3: true
+  allowEIO3: true,
 });
 
 let tasks = [];
 
 const sortTasks = (tasks) => {
-  return tasks.sort((a, b) => (a.completed === b.completed ? 0 : a.completed ? 1 : -1));
+  return tasks.sort((a, b) =>
+    a.completed === b.completed ? 0 : a.completed ? 1 : -1
+  );
 };
 
 io.on("connection", (socket) => {
@@ -28,7 +30,7 @@ io.on("connection", (socket) => {
 
   socket.on("addTask", (task) => {
     tasks.push(task);
-    io.emit("tasks", sortTasks(tasks)); 
+    io.emit("tasks", sortTasks(tasks));
   });
 
   socket.on("completeTask", (taskId) => {
@@ -56,5 +58,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(port, () => {
-  console.log(`WebSocket Server is running on port ${port}`)
-})
+  console.log(`WebSocket Server is running on port ${port}`);
+});
